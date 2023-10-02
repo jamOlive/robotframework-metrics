@@ -125,12 +125,12 @@
           <ul class="nav navbar-nav">
             <li><a href="#" class="tablink" id="defaultOpen" onclick="openPage('dashboard', this, '#fc6666')">Dashboard</a></li>
             <li><a href="#" class="tablink" onclick="openPage('suiteMetrics', this, '#fc6666'); executeDataTable('#sm',6)">Suite</a></li>
-            <li><a href="#" class="tablink" onclick="openPage('testMetrics', this, '#fc6666'); executeDataTable('#tm',3)">Test</a></li>
+            <li><a href="#" class="tablink" onclick="openPage('testMetrics', this, '#fc6666'); executeDataTable('#tm',3)">Cenários</a></li>
             <!-- <li class="{{ hide_keyword_menu }}"><a href="#" class="tablink" onclick="openPage('keywordMetrics', this, '#fc6666'); executeDataTable('#km',3)">Keyword</a></li> -->
-            <li class="{{ hide_kw_times_menu }}"><a href="#" class="tablink" onclick="openPage('keywordMetricsTime', this, '#fc6666'); executeDataTable('#kmt',1)">KW Times</a></li>
+            <li class="{{ hide_kw_times_menu }}"><a href="#" class="tablink" onclick="openPage('keywordMetricsTime', this, '#fc6666'); executeDataTable('#kmt',1)">Execução por Keywords</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a>Execution Time(m): {{ (suite_stats['Time']/60000)|round(2) }}</a></li>
+            <li><a>Tempo de Execução(m): {{ (suite_stats['Time']/60000)|round(2) }}</a></li>
           </ul>
         </div>
       </div>
@@ -145,7 +145,7 @@
 
           <div class="col-md-4">
             <div class="col-md-12 rowcard">
-              <span class="card-header">Suite Statistics:</span>
+              <span class="card-header">Estatísticas da Suite:</span>
               <div class="col-md-12">
                   <div id="suitePie"></div>
               </div>
@@ -176,7 +176,7 @@
 
           <div class="col-md-4">
             <div class="col-md-12 rowcard">
-              <span class="card-header">Test Statistics:</span>
+              <span class="card-header">Estatísticas de Cenários:</span>
               <div class="col-md-12">
                   <div id="testPie"></div>
               </div>
@@ -207,7 +207,7 @@
           
           <div class="col-md-4">
             <div class="col-md-12 rowcard">
-              <span class="card-header">Keyword Statistics:</span>
+              <span class="card-header">Estatísticas por Keyword:</span>
               <div class="col-md-12">
                   <div id="keywordPie"></div>
               </div>
@@ -241,11 +241,11 @@
         <div class="row">
           <div class="col-md-6">
             <div class="col-md-12 rowcard">
-              <span class="card-header">Top 5 Common Failures:</span>
+              <span class="card-header">Top 5 Falhas Comuns:</span>
               <table class="ecard-table">
                 <tr>
-                  <th>Error Message</th>
-                  <th>Occurence</th>
+                  <th>Mensagens de Erro</th>
+                  <th>Ocorrências</th>
                 </tr>
                 {% for key, value in error_stats.iterrows() %}
                   {% if (value['Message'] != "") %}
@@ -260,7 +260,7 @@
           </div>
           <div class="col-md-6">
             <div class="col-md-12 rowcard">
-              <span class="card-header">Execution Duration(m):</span>
+              <span class="card-header">Tempo de Execução (m):</span>
               <table class="ecard-table">
                 <tr>
                   <th>Type</th>
@@ -275,7 +275,7 @@
                   <td>{{(suite_stats['Avg']/60000)|round(2)}}</td>
                 </tr>
                 <tr>
-                  <td style="text-align: left;">Test</td>
+                  <td style="text-align: left;">Cenários</td>
                   <td>{{(test_stats['Min']/60000)|round(2)}}</td>
                   <td>{{(test_stats['Max']/60000)|round(2)}}</td>
                   <td>{{(test_stats['Avg']/60000)|round(2)}}</td>
@@ -288,7 +288,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="col-md-12 rowcard">
-              <span class="card-header">Top 10 Suite Failures:</span>
+              <span class="card-header">Top 10 Suite Falhas:</span>
               <div class="col-md-12">
                 <div id="suiteFailureLineID"></div>
               </div>
@@ -303,14 +303,14 @@
         <table id="sm" class="display tablecard" style="width:100%">
           <thead>
               <tr>
-                  <th>Name</th>
+                  <th>Nome</th>
                   <th>Status</th>
                   <th class="{{hide_docs}}">Documentation</th>
                   <th>Total</th>
                   <th>Pass</th>
                   <th>Fail</th>
                   <th>Skip</th>
-                  <th>Time (s)</th>
+                  <th>Tempo (s)</th>
               </tr>
           </thead>
           <tbody>
@@ -341,11 +341,11 @@
         <table id="tm" class="display tablecard" style="width:100%">
           <thead>
               <tr>
-                <th>Suite Name</th>
-                <th>Test Name</th>
+                <th>Suíte</th>
+                <th>cenários</th>
                 <th>Status</th>
                 <th class="{{hide_docs}}">Documentation</th>
-                <th>Time (s)</th>
+                <th>Tempo (s)</th>
                 <th>Message</th>
                 <th class="{{hide_tags}}">Tags</th>
               </tr>
@@ -407,11 +407,11 @@
         <table id="kmt" class="display tablecard" style="width:100%">
           <thead>
               <tr>
-                  <th>Keyword Name</th>
-                  <th>Times</th>
+                  <th>Nome Keyword</th>
+                  <th>Tempo</th>
                   <th>Min Duration(s)</th>
                   <th>Max Duration(s)</th>
-                  <th>Average Duration(s)</th>
+                  <th>Duração Média(s)</th>
               </tr>
           </thead>
           <tbody>
